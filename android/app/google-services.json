@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "275823955417",
+    "firebase_url": "https://kounslr3.firebaseio.com",
+    "project_id": "kounslr3",
+    "storage_bucket": "kounslr3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:275823955417:android:b72ce64aa6586461a7ddc8",
+        "android_client_info": {
+          "package_name": "com.aridixit.kounslr3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "275823955417-9d59f6f0r5qiirrtqtkgv4lasrb3rg0u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzAMbtEICkk8Jh3PrAu7zcSISqMoOstmk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "275823955417-9d59f6f0r5qiirrtqtkgv4lasrb3rg0u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
