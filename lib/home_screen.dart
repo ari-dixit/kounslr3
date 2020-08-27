@@ -1,9 +1,19 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:kounslr3/hs_buttons.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:kounslr3/login_page.dart';
 
-class HomeScreen extends StatelessWidget{
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key key, @required this.user}) : super(key: key);
+  final UserCredential user;
   @override
-  Widget build(BuildContext context){
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Welcome to Kounslr!',

@@ -25,7 +25,7 @@ class CourseButton extends StatelessWidget{
       ),
     );
   }
-}
+} 
 
 class MessageButton extends StatelessWidget{
 
