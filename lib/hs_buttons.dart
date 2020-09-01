@@ -1,5 +1,6 @@
 
 import 'package:kounslr3/course_selection_page.dart';
+import 'package:kounslr3/notes_screen.dart';
 import 'package:path/path.dart';
 import 'package:flutter/material.dart';
 
@@ -34,13 +35,13 @@ class MessageButton extends StatelessWidget{
     return Center(
       child: RaisedButton.icon(
         onPressed: () {
-          //Navigator.of(context).push(MaterialPageRoute(builder: (context) => CoursePage()));
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => NotesScreen()));
         },
-        label: Text('Messages',
+        label: Text('Journal',
           style: TextStyle(fontSize: 25),
         ),
         icon: Icon(
-            Icons.add_comment
+            Icons.book
         ),
         color: Colors.lightBlue,
         textColor: Colors.black,

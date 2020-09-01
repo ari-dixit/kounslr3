@@ -21,10 +21,6 @@ class CoursePage extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Course Outline',
-          style: TextStyle(fontSize: 25),),
-      ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection('courses').snapshots(),
       builder: (context, snapshot){
