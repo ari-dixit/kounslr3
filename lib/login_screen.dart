@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:kounslr3/sign_up_screen.dart';
 
 import 'course_selection_page.dart';
+import 'crud.dart';
 import 'home_screen.dart';
 import 'login_screen_constants.dart';
 
@@ -323,6 +324,7 @@ class _LoginScreenState extends State<LoginScreen> {
             .createUserWithEmailAndPassword(email: _email, password: _password))
             .user;
         user.sendEmailVerification();
+        await DatabaseService(uid: user.uid).updateUserData('English 9A', 'Geometry', 'Biology');
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => LoginScreen()));
       } catch (e) {

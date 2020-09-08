@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kounslr3/login_screen.dart';
 
+import 'course_selection_page.dart';
+import 'crud.dart';
 import 'home_screen.dart';
 import 'login_screen_constants.dart';
 
@@ -283,6 +285,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         User user = (await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: _email, password: _password)).user;
         user.sendEmailVerification();
+        await DatabaseService(uid: user.uid).updateUserData('English 9A', 'Geometry', 'Biology');
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
       } catch(e){
         print(e.message);
