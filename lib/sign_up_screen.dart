@@ -285,7 +285,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         User user = (await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: _email, password: _password)).user;
         user.sendEmailVerification();
-        await DatabaseService(uid: user.uid).updateUserData('English 9A', 'Geometry', 'Biology');
+        await DatabaseService(uid: user.uid).updateUserData('English 9A', 'Geometry', 'Biology','HPE 10','World History');
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
       } catch(e){
         print(e.message);

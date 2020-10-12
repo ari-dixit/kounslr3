@@ -70,13 +70,13 @@ class _LoginScreenState extends State<LoginScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextFormField(
-            validator: (input){},
+            validator: (input) {},
             obscureText: true,
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
             ),
-            onSaved: (input)=> _password = input,
+            onSaved: (input) => _password = input,
             decoration: InputDecoration(
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
@@ -273,25 +273,30 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget showAlert() {
     if (_error != null) {
       return Padding(
-        padding: const EdgeInsets.fromLTRB(0, 15, 0,0),
+        padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
         child: Container(
           color: Colors.red[100],
           width: double.infinity,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Center(
-              child: Text('$_error', style: TextStyle(
-                color: Colors.red,
-                //fontFamily: 'OpenSans',
-                fontSize: 13.0,
-                fontWeight: FontWeight.bold,
-              ),),
+              child: Text(
+                '$_error',
+                style: TextStyle(
+                  color: Colors.red,
+                  //fontFamily: 'OpenSans',
+                  fontSize: 13.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ),
         ),
       );
     }
-    return SizedBox(height: 0,);
+    return SizedBox(
+      height: 0,
+    );
   }
 
   Future<void> signIn() async {
@@ -301,8 +306,8 @@ class _LoginScreenState extends State<LoginScreen> {
       try {
         UserCredential user = await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: _email, password: _password);
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => HomeScreen()));
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => HomeScreen()));
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
           print('No user found for that email.');
@@ -320,11 +325,12 @@ class _LoginScreenState extends State<LoginScreen> {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       try {
-        User user = (await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(email: _email, password: _password))
+        User user = (await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                email: _email, password: _password))
             .user;
         user.sendEmailVerification();
-        await DatabaseService(uid: user.uid).updateUserData('English 9A', 'Geometry', 'Biology');
+        await DatabaseService(uid: user.uid).updateUserData(
+            'English 9A', 'Geometry', 'Biology', 'HPE 10', 'World History');
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => LoginScreen()));
       } catch (e) {
@@ -332,8 +338,9 @@ class _LoginScreenState extends State<LoginScreen> {
       }
     }
   }
+
   void navigateToSignUp() {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => SignUpScreen(), fullscreenDialog: true));
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => SignUpScreen(), fullscreenDialog: true));
   }
 }
-

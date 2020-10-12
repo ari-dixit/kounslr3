@@ -11,9 +11,8 @@ class CoursePage extends StatefulWidget {
 }
 
 class _CoursePageState extends State<CoursePage> {
-
-  final CollectionReference _coursesCollectionRef = FirebaseFirestore.instance
-      .collection('courses');
+  final CollectionReference _coursesCollectionRef =
+      FirebaseFirestore.instance.collection('courses');
 
   QuerySnapshot courses;
   crudMethods crudObj = new crudMethods();
@@ -22,13 +21,12 @@ class _CoursePageState extends State<CoursePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-          //child: new FlatButton(onPressed: crudObj.addData()),
-        )
-    );
+            //child: new FlatButton(onPressed: crudObj.addData()),
+            ));
   }
 
   void initState() {
-    crudObj.getData().then((results) {
+    crudObj.read('courses', 'english').then((results) {
       setState(() {
         courses = results;
       });
@@ -47,8 +45,7 @@ class _CoursePageState extends State<CoursePage> {
           );
         },
       );
-    }
-    else {
+    } else {
       return Text('loading');
     }
   }

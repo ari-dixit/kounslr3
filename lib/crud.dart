@@ -2,33 +2,60 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:kounslr3/course_selection_page.dart';
+import 'package:kounslr3/home_screen.dart';
 
-class crudMethods{
-  bool isLoggedIn(){
-    if (FirebaseAuth.instance.currentUser != null){
+class crudMethods {
+  bool isLoggedIn() {
+    if (FirebaseAuth.instance.currentUser != null) {
       return true;
-    } else{
+    } else {
       return false;
     }
   }
 
-  Future<void> addData(courseData) async {
-    if(isLoggedIn()) {
-      FirebaseFirestore.instance.collection('courses').doc(getUID()).update(courseData).catchError((
-          e) {
-        print(e);
+  void create(collection) async {
+    String uid = FirebaseAuth.instance.currentUser.uid.toString();
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+    try {
+      await firestore.collection(collection).doc(uid).set({
+        'firstName': 'test',
+        'lastName': 'user',
       });
-    }else{
-      print('please log in');
+    } catch (e) {
+      print(e);
     }
   }
-  
-  getData() async{
-    return await FirebaseFirestore.instance.collection('courses').get();
+
+  Future read( collection, course) async {
+    String uid = FirebaseAuth.instance.currentUser.uid.toString();
+    return GetCourse(uid, course, collection);
+  }
+
+
+  Future update(collection, String course, String name) async {
+    String uid = FirebaseAuth.instance.currentUser.uid.toString();
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+    try {
+      firestore.collection(collection).doc(uid).update({
+        '$course': name,
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void delete(collection) async {
+    String uid = FirebaseAuth.instance.currentUser.uid.toString();
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+    try {
+      firestore.collection(collection).doc(uid).delete();
+    } catch (e) {
+      print(e);
+    }
   }
 }
 
-getUID()async{
+getUID() async {
   final User user = await FirebaseAuth.instance.currentUser;
   return user.uid.toString();
 }
@@ -38,13 +65,87 @@ class DatabaseService {
 
   DatabaseService({this.uid});
 
-  final CollectionReference courseCollection = FirebaseFirestore.instance.collection('courses');
+  final CollectionReference courseCollection =
+      FirebaseFirestore.instance.collection('courses');
 
-  Future updateUserData(String english, String math, String science) async {
+  Future updateUserData(String english, String math, String science, String gym,
+      String history) async {
     return await courseCollection.doc(uid).set({
-      'english': english,
-      'math': math,
-      'science': science,
+      'English': english,
+      'Math': math,
+      'Science': science,
+      'Elective 1': 'test1',
+      'Elective 2': 'test2',
+      'Phys. Ed.': gym,
+      'Social Studies': history,
     });
+  }
+}
+
+class GetCourse extends StatelessWidget {
+  final String documentId;
+  final String course;
+  final String collection;
+
+  GetCourse(this.documentId, this.course, this.collection);
+
+  @override
+  Widget build(BuildContext context) {
+    CollectionReference users =
+        FirebaseFirestore.instance.collection(collection);
+
+    return FutureBuilder<DocumentSnapshot>(
+      future: users.doc(documentId).get(),
+      builder:
+          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return Text("Something went wrong");
+        }
+
+        if (snapshot.connectionState == ConnectionState.done) {
+          Map<String, dynamic> data = snapshot.data.data();
+          return Text(
+            "${data[course]}",
+            style: TextStyle(fontSize: 20), textAlign: TextAlign.right,
+          );
+        }
+
+        return Text("loading");
+      },
+    );
+  }
+}
+
+class GetCourseName extends StatelessWidget {
+  final String documentId;
+  final String course;
+  final String collection;
+
+  GetCourseName(this.documentId, this.course, this.collection);
+
+  @override
+  Widget build(BuildContext context) {
+    CollectionReference users =
+    FirebaseFirestore.instance.collection(collection);
+
+    return FutureBuilder<DocumentSnapshot>(
+      future: users.doc(documentId).get(),
+      builder:
+          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return Text("Something went wrong");
+        }
+
+        if (snapshot.connectionState == ConnectionState.done) {
+          Map<String, dynamic> data = snapshot.data.data();
+          return Text(
+            "$course:",
+            style: TextStyle(fontSize: 20),
+          );
+        }
+
+        return Text("loading");
+      },
+    );
   }
 }
