@@ -1,17 +1,16 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:kounslr3/crud.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:kounslr3/background_operations/crud.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key key, @required this.user}) : super(key: key);
-  final UserCredential user;
-
+class CoursePage extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _CoursePageState createState() => _CoursePageState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  @override
+class _CoursePageState extends State<CoursePage> {
   String uid = FirebaseAuth.instance.currentUser.uid.toString();
   crudMethods crudObj = new crudMethods();
   bool honorsEnglish = false;
@@ -97,9 +96,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
           title: new Text(
-        'Course Selection',
-        style: TextStyle(fontSize: 30),
-      )),
+            'Course Selection',
+            style: TextStyle(fontSize: 30),
+          )),
       backgroundColor: Color(0xFF61A4F1),
       body: SingleChildScrollView(
         child: Column(
@@ -112,12 +111,12 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Container(
                     margin:
-                        EdgeInsets.fromLTRB(5.0, 10.0, 2.5, 10.0),
+                    EdgeInsets.fromLTRB(5.0, 10.0, 2.5, 10.0),
                     padding:
-                        EdgeInsets.symmetric(horizontal: 4.0, vertical: 10.0),
+                    EdgeInsets.symmetric(horizontal: 4.0, vertical: 10.0),
                     color: Colors.white,
                     child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         GetCourseName(uid, 'Social Studies', 'courses'),
                         GetCourseName(uid, 'English', 'courses'),
@@ -132,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     margin:
                     EdgeInsets.fromLTRB(2.5, 10.0, 5.0, 10.0),
                     padding:
-                        EdgeInsets.symmetric(horizontal: 4.0, vertical: 10.0),
+                    EdgeInsets.symmetric(horizontal: 4.0, vertical: 10.0),
                     color: Colors.white,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

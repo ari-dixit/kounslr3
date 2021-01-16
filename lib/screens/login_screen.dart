@@ -1,12 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:kounslr3/sign_up_screen.dart';
+import 'package:kounslr3/screens/sign_up_screen.dart';
 
 import 'course_selection_page.dart';
-import 'crud.dart';
+import '../background_operations/crud.dart';
 import 'home_screen.dart';
-import 'login_screen_constants.dart';
+import '../background_operations/login_screen_constants.dart';
 
 class LoginScreen extends StatefulWidget {
   @override

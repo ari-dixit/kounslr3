@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:kounslr3/course_selection_page.dart';
-import 'package:kounslr3/home_screen.dart';
+import 'package:kounslr3/screens/course_selection_page.dart';
+import 'package:kounslr3/screens/home_screen.dart';
 
 class crudMethods {
   bool isLoggedIn() {

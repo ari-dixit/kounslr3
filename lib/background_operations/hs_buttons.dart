@@ -1,4 +1,4 @@
-import 'package:kounslr3/course_selection_page.dart';
+import 'package:kounslr3/screens/course_selection_page.dart';
 import 'package:path/path.dart';
 import 'package:flutter/material.dart';
 
