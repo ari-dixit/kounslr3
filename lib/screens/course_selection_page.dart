@@ -148,21 +148,6 @@ class _CoursePageState extends State<CoursePage> {
                 )
               ],
             ),
-            /*SizedBox(width: 20, height: 10),
-            GetCourse(uid, 'Social Studies', 'courses'),
-            SizedBox(width: 20, height: 10),
-            GetCourse(uid, 'English', 'courses'),
-            SizedBox(width: 20, height: 10),
-            GetCourse(uid, 'Math', 'courses'),
-            SizedBox(width: 20, height: 10),
-            GetCourse(uid, 'Science', 'courses'),
-            SizedBox(width: 20, height: 10),
-            GetCourse(uid, 'Phys. Ed.', 'courses'),
-            SizedBox(width: 20, height: 10),
-            GetCourse(uid, 'Elective 1', 'courses'),
-            SizedBox(width: 20, height: 10),
-            GetCourse(uid, 'Elective 2', 'courses'),
-            SizedBox(width: 20, height: 15),*/
             Text('Edit your schedule below:',
                 style: TextStyle(
                   fontSize: 20,

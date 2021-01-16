@@ -4,6 +4,8 @@ import 'package:kounslr3/screens/course_selection_page.dart';
 import 'package:kounslr3/background_operations/crud.dart';
 import 'package:kounslr3/screens/notes_page.dart';
 
+import 'settings_page.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key, @required this.user}) : super(key: key);
   final UserCredential user;
@@ -40,6 +42,20 @@ class _HomeScreenState extends State<HomeScreen> {
             child: new TickerMode(
               enabled: index == 2,
               child: new MaterialApp(home: new NotesScreen()),
+            ),
+          ),
+          new Offstage(
+            offstage: index != 3,
+            child: new TickerMode(
+              enabled: index == 3,
+              child: new MaterialApp(home: new NotesScreen()),
+            ),
+          ),
+          new Offstage(
+            offstage: index != 4,
+            child: new TickerMode(
+              enabled: index == 4,
+              child: new MaterialApp(home: new settingsPage()),
             ),
           ),
         ],
