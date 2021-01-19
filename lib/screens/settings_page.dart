@@ -27,8 +27,8 @@ class _settingsPageState extends State<settingsPage> {
           child: Column(
             children: [
               Text("Welcome, " + uid, style: TextStyle(color: Colors.blue, fontSize: 20)),
-              Text(""+email, style: TextStyle(color: Colors.blue, fontSize: 20),
-            ),
+              Text(""+email, style: TextStyle(color: Colors.blue, fontSize: 20)),
+              Text("Account Type: "),
             ]
           ),
         )
