@@ -29,6 +29,7 @@ class _settingsPageState extends State<settingsPage> {
               Text("Welcome, " + uid, style: TextStyle(color: Colors.blue, fontSize: 20)),
               Text(""+email, style: TextStyle(color: Colors.blue, fontSize: 20)),
               Text("Account Type: "),
+              GetCourseName(uid, 'Social Studies', 'courses'),
             ]
           ),
         )
