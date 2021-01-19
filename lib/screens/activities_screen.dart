@@ -12,25 +12,29 @@ class  activitiesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
     body: Center(
-      child: Column(
-        children: [
-      GetCourseName(uid, 'Social Studies', 'courses'),
-      GetCourseName(uid, 'English', 'courses'),
-      GetCourseName(uid, 'Math', 'courses'),
-      GetCourseName(uid, 'Science', 'courses'),
-      GetCourseName(uid, 'Phys. Ed.', 'courses'),
-      GetCourseName(uid, 'Elective 1', 'courses'),
-      GetCourseName(uid, 'Elective 2', 'courses'),
-      TextField(
-        decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: 'Enter a search term',
-            ),
-            onChanged: (text) {
-                print("First text field: $text");
-              },
-      )
-      ],
+      child: Padding(
+        padding: const EdgeInsets.all(40.0),
+        child: Column(
+          children: [
+            Text("Your Activities: "),
+            GetCourseName(uid, 'Social Studies', 'courses'),
+            GetCourseName(uid, 'English', 'courses'),
+            GetCourseName(uid, 'Math', 'courses'),
+            GetCourseName(uid, 'Science', 'courses'),
+            GetCourseName(uid, 'Phys. Ed.', 'courses'),
+            GetCourseName(uid, 'Elective 1', 'courses'),
+            GetCourseName(uid, 'Elective 2', 'courses'),
+            TextField(
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'Enter a search term',
+                  ),
+                  onChanged: (text) {
+                      print("First text field: $text");
+                    },
+            )
+            ],
+        ),
       ),
     ));
   }
