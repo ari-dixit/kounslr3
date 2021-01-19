@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:kounslr3/screens/activities_screen.dart';
 import 'package:kounslr3/screens/course_selection_page.dart';
 import 'package:kounslr3/background_operations/crud.dart';
 import 'package:kounslr3/screens/notes_page.dart';
@@ -34,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
             offstage: index != 1,
             child: new TickerMode(
               enabled: index == 1,
-              child: new MaterialApp(home: new NotesScreen()),
+              child: new MaterialApp(home: new activitiesScreen()),
             ),
           ),
           new Offstage(
