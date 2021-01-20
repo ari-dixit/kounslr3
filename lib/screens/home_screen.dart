@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
             offstage: index != 1,
             child: new TickerMode(
               enabled: index == 1,
-              child: new MaterialApp(home: new NotesScreen()),
+              child: new MaterialApp(home: new CoursePage()),
             ),
           ),
           new Offstage(

@@ -130,36 +130,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  Widget _buildRememberMeCheckbox() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20.0),
-      child: Container(
-        height: 20.0,
-        child: Row(
-          children: <Widget>[
-            Theme(
-              data: ThemeData(unselectedWidgetColor: Colors.white),
-              child: Checkbox(
-                value: _rememberMe,
-                checkColor: Colors.green,
-                activeColor: Colors.white,
-                onChanged: (value) {
-                  setState(() {
-                    _rememberMe = value;
-                  });
-                },
-              ),
-            ),
-            Text(
-              'Remember me',
-              style: kLabelStyle,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget _buildSignupBtn() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -271,10 +241,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                       SizedBox(height: 30.0),
+                      _buildNameTF(),
+                      SizedBox(height: 30.0),
                       _buildEmailTF(),
-                      SizedBox(
-                        height: 30.0,
-                      ),
+                      SizedBox(height: 30.0,),
                       _buildPasswordTF(),
                       SizedBox(
                         height: 15.0,
