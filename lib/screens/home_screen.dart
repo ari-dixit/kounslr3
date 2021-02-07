@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:kounslr3/screens/course_selection_page.dart';
 import 'package:kounslr3/background_operations/crud.dart';
 import 'package:kounslr3/screens/notes_page.dart';
-
 import 'settings_page.dart';
 
 class HomeScreen extends StatefulWidget {

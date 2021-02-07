@@ -19,6 +19,80 @@ class _SignUpScreenState extends State<SignUpScreen> {
   String _error;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  Widget _buildFirstNameTF() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          'First Name',
+          style: kLabelStyle,
+        ),
+        SizedBox(height: 10.0),
+        Container(
+          alignment: Alignment.centerLeft,
+          decoration: kBoxDecorationStyle,
+          height: 60.0,
+          child: TextFormField(
+            //validator: EmailValidator.validate,
+            keyboardType: TextInputType.emailAddress,
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: 'OpenSans',
+            ),
+            onSaved: (input) => _email = input,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.only(top: 14.0),
+              prefixIcon: Icon(
+                Icons.email,
+                color: Colors.white,
+              ),
+              hintText: 'Enter your First Name',
+              hintStyle: kHintTextStyle,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildLastNameTF() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          'Last Name',
+          style: kLabelStyle,
+        ),
+        SizedBox(height: 10.0),
+        Container(
+          alignment: Alignment.centerLeft,
+          decoration: kBoxDecorationStyle,
+          height: 60.0,
+          child: TextFormField(
+            //validator: EmailValidator.validate,
+            keyboardType: TextInputType.emailAddress,
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: 'OpenSans',
+            ),
+            onSaved: (input) => _email = input,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.only(top: 14.0),
+              prefixIcon: Icon(
+                Icons.email,
+                color: Colors.white,
+              ),
+              hintText: 'Enter your Last Name',
+              hintStyle: kHintTextStyle,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget _buildEmailTF() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,13 +144,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextFormField(
-            validator: (input){},
+            validator: (input) {},
             obscureText: true,
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
             ),
-            onSaved: (input)=> _password = input,
+            onSaved: (input) => _password = input,
             decoration: InputDecoration(
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
@@ -107,13 +181,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextFormField(
-            validator: (input){},
+            validator: (input) {},
             obscureText: true,
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
             ),
-            onSaved: (input)=> _name = input,
+            onSaved: (input) => _name = input,
             decoration: InputDecoration(
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
@@ -141,8 +215,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
           onPressed: signUp,
           padding: EdgeInsets.all(15.0),
           shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
-        ),
+            borderRadius: BorderRadius.circular(30.0),
+          ),
           color: Colors.white,
           child: Text(
             'Sign Up',
@@ -158,6 +232,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
     );
   }
+
   Widget _buildLoginBtn() {
     return Container(
       child: FlatButton(
@@ -240,14 +315,42 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                       ),
+                      //SizedBox(height: 30.0),
+                      //_buildNameTF(),
                       SizedBox(height: 30.0),
-                      _buildNameTF(),
+                      _buildFirstNameTF(),
+                      SizedBox(height: 30.0),
+                      _buildLastNameTF(),
                       SizedBox(height: 30.0),
                       _buildEmailTF(),
-                      SizedBox(height: 30.0,),
-                      _buildPasswordTF(),
                       SizedBox(
-                        height: 15.0,
+                        height: 30.0,
+                      ),
+                      _buildPasswordTF(),
+                      SizedBox(height: 15.0),
+                      DropdownButton<String>(
+                        value: 'Student',
+                        icon: Icon(Icons.arrow_downward),
+                        iconSize: 24,
+                        elevation: 16,
+                        style: TextStyle(color: Colors.deepPurple),
+                        underline: Container(
+                          height: 2,
+                          color: Colors.deepPurpleAccent,
+                        ),
+                        onChanged: (String newValue) {
+                          setState(() {
+                            value:
+                            newValue;
+                          });
+                        },
+                        items: <String>['Student', 'Admin']
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
                       ),
                       showAlert(),
                       //_buildRememberMeCheckbox(),
@@ -272,29 +375,37 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Center(
-            child: Text('$_error', style: TextStyle(
-              color: Colors.red,
-              //fontFamily: 'OpenSans',
-              fontSize: 13.0,
-              fontWeight: FontWeight.bold,
-            ),),
+            child: Text(
+              '$_error',
+              style: TextStyle(
+                color: Colors.red,
+                //fontFamily: 'OpenSans',
+                fontSize: 13.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ),
       );
     }
-    return SizedBox(height: 0,);
+    return SizedBox(
+      height: 0,
+    );
   }
 
-  Future<void> signUp() async{
-    if(_formKey.currentState.validate()){
+  Future<void> signUp() async {
+    if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       try {
-        User user = (await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(email: _email, password: _password)).user;
+        User user = (await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                email: _email, password: _password))
+            .user;
         user.sendEmailVerification();
-        await DatabaseService(uid: user.uid).updateUserData('English 9A', 'Geometry', 'Biology','HPE 10','World History');
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
-      } catch(e){
+        await DatabaseService(uid: user.uid).updateUserData(
+            'English 9A', 'Geometry', 'Biology', 'HPE 10', 'World History');
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => LoginScreen()));
+      } catch (e) {
         print(e.message);
         setState(() {
           _error = e.message;
@@ -302,9 +413,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
       }
     }
   }
+
   void navigateToLogin() {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginScreen(), fullscreenDialog: true));
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => LoginScreen(), fullscreenDialog: true));
   }
 }
-
-

@@ -1,13 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:kounslr3/screens/sign_up_screen.dart';
-
-import 'course_selection_page.dart';
-import '../background_operations/crud.dart';
-import 'home_screen.dart';
-import '../background_operations/login_screen_constants.dart';
-
 
 class settingsPage extends StatefulWidget {
   @override
@@ -34,5 +26,27 @@ class _settingsPageState extends State<settingsPage> {
         )
       ),
     );
+  }
+}
+
+class User{
+  final String id;
+  final String fullName;
+  final String email;
+  final String userRole;
+
+  User({this.id, this.fullName, this.email, this.userRole});
+
+  User.fromData(Map<String, dynamic> data): id = data['id'],
+        fullName = data['fullName'], email = data['email'],
+        userRole = data['userRole'];
+
+  Map<String, dynamic> toJson(){
+    return{
+      'id': id,
+      'fullName': fullName,
+      'email': email,
+      'userRole': userRole,
+    };
   }
 }
