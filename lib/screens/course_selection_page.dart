@@ -25,10 +25,10 @@ class _CoursePageState extends State<CoursePage> {
       honorsEnglish = value;
     });
     if (value != true) {
-      crudObj.update('courses', 'English', 'Academic English');
+      crudObj.update('users', 'English', 'Academic English');
     }
     if (value != false) {
-      crudObj.update('courses', 'English', 'Honors English');
+      crudObj.update('users', 'English', 'Honors English');
     }
   }
 
@@ -37,10 +37,10 @@ class _CoursePageState extends State<CoursePage> {
       honorsSocialStudies = value;
     });
     if (value != true) {
-      crudObj.update('courses', 'Social Studies', 'World History 9');
+      crudObj.update('users', 'Social Studies', 'World History 9');
     }
     if (value != false) {
-      crudObj.update('courses', 'Social Studies', 'Pre-AP World History');
+      crudObj.update('users', 'Social Studies', 'Pre-AP World History');
     }
   }
 
@@ -49,10 +49,10 @@ class _CoursePageState extends State<CoursePage> {
       honorsMath = value;
     });
     if (value != true) {
-      crudObj.update('courses', 'Math', 'Algebra 1');
+      crudObj.update('users', 'Math', 'Algebra 1');
     }
     if (value != false) {
-      crudObj.update('courses', 'Math', 'Geometry');
+      crudObj.update('users', 'Math', 'Geometry');
     }
   }
 
@@ -61,10 +61,10 @@ class _CoursePageState extends State<CoursePage> {
       honorsScience = value;
     });
     if (value != true) {
-      crudObj.update('courses', 'Science', 'Earth Science');
+      crudObj.update('users', 'Science', 'Earth Science');
     }
     if (value != false) {
-      crudObj.update('courses', 'Science', 'Biology');
+      crudObj.update('users', 'Science', 'Biology');
     }
   }
 
@@ -73,10 +73,10 @@ class _CoursePageState extends State<CoursePage> {
       elective1 = value;
     });
     if (value != true) {
-      crudObj.update('courses', 'Elective 1', 'Spanish');
+      crudObj.update('users', 'Elective 1', 'Spanish');
     }
     if (value != false) {
-      crudObj.update('courses', 'Elective 1', 'Symphonic Band');
+      crudObj.update('users', 'Elective 1', 'Symphonic Band');
     }
   }
 
@@ -85,10 +85,10 @@ class _CoursePageState extends State<CoursePage> {
       elective2 = value;
     });
     if (value != true) {
-      crudObj.update('courses', 'Elective 2', 'Theater');
+      crudObj.update('users', 'Elective 2', 'Theater');
     }
     if (value != false) {
-      crudObj.update('courses', 'Elective 2', 'Business');
+      crudObj.update('users', 'Elective 2', 'Business');
     }
   }
 
@@ -118,13 +118,13 @@ class _CoursePageState extends State<CoursePage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        GetCourseName(uid, 'Social Studies', 'courses'),
-                        GetCourseName(uid, 'English', 'courses'),
-                        GetCourseName(uid, 'Math', 'courses'),
-                        GetCourseName(uid, 'Science', 'courses'),
-                        GetCourseName(uid, 'Phys. Ed.', 'courses'),
-                        GetCourseName(uid, 'Elective 1', 'courses'),
-                        GetCourseName(uid, 'Elective 2', 'courses'),
+                        GetCourseName(uid, 'Social Studies', 'users'),
+                        GetCourseName(uid, 'English', 'users'),
+                        GetCourseName(uid, 'Math', 'users'),
+                        GetCourseName(uid, 'Science', 'users'),
+                        GetCourseName(uid, 'Phys. Ed.', 'users'),
+                        GetCourseName(uid, 'Elective 1', 'users'),
+                        GetCourseName(uid, 'Elective 2', 'users'),
                       ],
                     )),
                 Container(
@@ -136,13 +136,13 @@ class _CoursePageState extends State<CoursePage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        GetCourse(uid, 'Social Studies', 'courses'),
-                        GetCourse(uid, 'English', 'courses'),
-                        GetCourse(uid, 'Math', 'courses'),
-                        GetCourse(uid, 'Science', 'courses'),
-                        GetCourse(uid, 'Phys. Ed.', 'courses'),
-                        GetCourse(uid, 'Elective 1', 'courses'),
-                        GetCourse(uid, 'Elective 2', 'courses'),
+                        GetCourse(uid, 'Social Studies', 'users'),
+                        GetCourse(uid, 'English', 'users'),
+                        GetCourse(uid, 'Math', 'users'),
+                        GetCourse(uid, 'Science', 'users'),
+                        GetCourse(uid, 'Phys. Ed.', 'users'),
+                        GetCourse(uid, 'Elective 1', 'users'),
+                        GetCourse(uid, 'Elective 2', 'users'),
                       ],
                     )
                 )

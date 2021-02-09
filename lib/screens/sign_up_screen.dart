@@ -15,7 +15,7 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   bool _rememberMe = false;
-  String _email, _password, _name;
+  String _email, _password, _firstname, _lastname;
   String _error;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -39,7 +39,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               color: Colors.white,
               fontFamily: 'OpenSans',
             ),
-            onSaved: (input) => _email = input,
+            onSaved: (input) => _firstname = input,
             decoration: InputDecoration(
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
@@ -76,7 +76,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               color: Colors.white,
               fontFamily: 'OpenSans',
             ),
-            onSaved: (input) => _email = input,
+            onSaved: (input) => _lastname = input,
             decoration: InputDecoration(
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
@@ -159,43 +159,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 color: Colors.white,
               ),
               hintText: 'Enter your Password',
-              hintStyle: kHintTextStyle,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildNameTF() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          'Password',
-          style: kLabelStyle,
-        ),
-        SizedBox(height: 10.0),
-        Container(
-          alignment: Alignment.centerLeft,
-          decoration: kBoxDecorationStyle,
-          height: 60.0,
-          child: TextFormField(
-            validator: (input) {},
-            obscureText: true,
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'OpenSans',
-            ),
-            onSaved: (input) => _name = input,
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
-              prefixIcon: Icon(
-                Icons.lock,
-                color: Colors.white,
-              ),
-              hintText: 'Enter your name',
               hintStyle: kHintTextStyle,
             ),
           ),
@@ -401,8 +364,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 email: _email, password: _password))
             .user;
         user.sendEmailVerification();
-        await DatabaseService(uid: user.uid).updateUserData(
-            'English 9A', 'Geometry', 'Biology', 'HPE 10', 'World History');
+        await DatabaseService(uid: user.uid).initialUpdateUserData(
+            _firstname, _lastname, 'English 9A', 'Geometry', 'Biology', 'HPE 10', 'World History');
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => LoginScreen()));
       } catch (e) {

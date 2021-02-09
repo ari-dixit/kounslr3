@@ -321,24 +321,6 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  Future<void> signUp() async {
-    if (_formKey.currentState.validate()) {
-      _formKey.currentState.save();
-      try {
-        User user = (await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                email: _email, password: _password))
-            .user;
-        user.sendEmailVerification();
-        await DatabaseService(uid: user.uid).updateUserData(
-            'English 9A', 'Geometry', 'Biology', 'HPE 10', 'World History');
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => LoginScreen()));
-      } catch (e) {
-        print(e.message);
-      }
-    }
-  }
-
   void navigateToSignUp() {
     Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => SignUpScreen(), fullscreenDialog: true));

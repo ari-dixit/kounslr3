@@ -26,7 +26,7 @@ class crudMethods {
     }
   }
 
-  Future read( collection, course) async {
+  Future read(collection, course) async {
     String uid = FirebaseAuth.instance.currentUser.uid.toString();
     return GetCourse(uid, course, collection);
   }
@@ -66,7 +66,22 @@ class DatabaseService {
   DatabaseService({this.uid});
 
   final CollectionReference courseCollection =
-      FirebaseFirestore.instance.collection('courses');
+      FirebaseFirestore.instance.collection('users');
+
+  Future initialUpdateUserData(String firstname, String lastname, String english, String math, String science, String gym,
+      String history) async {
+    return await courseCollection.doc(uid).set({
+      'First Name': firstname,
+      'Last Name': lastname,
+      'English': english,
+      'Math': math,
+      'Science': science,
+      'Elective 1': 'test1',
+      'Elective 2': 'test2',
+      'Phys. Ed.': gym,
+      'Social Studies': history,
+    });
+  }
 
   Future updateUserData(String english, String math, String science, String gym,
       String history) async {
